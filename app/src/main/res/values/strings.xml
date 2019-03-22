@@ -1,3 +1,76 @@
 <resources>
-    <string name="app_name">MyHotixCheckIn</string>
+    <!-- START STRINGS -->
+    <!-- App All -->
+    <string name="app_name">MyHotix CheckIn</string>
+    <string name="all_yes">YES</string>
+    <string name="all_cancel">CANCEL</string>
+    <string name="all_download">DOWNLOAD</string>
+    <string name="all_ok">OK</string>
+    <string name="all_retry">RETRY</string>
+    <string name="all_downloading">Downloading...</string>
+    <string name="all_on">ON</string>
+    <string name="all_off">OFF</string>
+    <!-- Splash Screen Activity-->
+    <string name="splash_screen_footer">MyHotix CheckIn</string>
+    <!-- Home Activity -->
+    <string name="hint_resa_id">Reservation ID </string>
+    <string name="text_search_button">search</string>
+    <string name="text_vertion">Version</string>
+    <!-- Settings Activity -->
+    <string name="text_settings">Settings</string>
+    <string name="text_serveur_config">Server Settings</string>
+    <string name="text_SSL">SSL</string>
+    <string name="hint_public_ip">Public IP</string>
+    <string name="hint_local_ip">Local IP</string>
+    <string name="hint_api_public_url">API Public URL</string>
+    <string name="hint_api_local_url">API Local URL</string>
+    <string name="text_hotel_code">Hotel Code</string>
+    <string name="hint_code">Code</string>
+    <string name="text_picture">Picture</string>
+    <string name="hide">Hide</string>
+    <string name="show">Show</string>
+    <string name="text_auto_update">Auto Update Settings</string>
+    <string name="text_default_url">Default</string>
+    <!-- Params Activity -->
+    <string name="text_user_parameters">User Parameters</string>
+    <string name="text_view_first_name">First Name</string>
+    <string name="text_view_last_name">Last Name</string>
+    <string name="text_view_gender">Gender</string>
+    <string name="text_view_birthday">Birthday</string>
+    <string name="text_view_family_situation">Family Situation</string>
+    <string name="text_view_phone">Phone</string>
+    <string name="text_view_email">E-mail</string>
+    <string name="text_view_address">Address</string>
+    <string name="text_view_country">Country</string>
+    <string name="text_view_postal_code">Postal Code</string>
+    <string name="text_view_city">City</string>
+    <string name="text_view_profession">Profession</string>
+    <string name="text_view_type_doc_id">Type Doc ID</string>
+    <string name="text_view_handicap">Handicap</string>
+    <string name="text_view_smoker">Smoker</string>
+    <!-- Dialogs -->
+    <string name="dialog_exit_title">EXIT</string>
+    <string name="dialog_exit_text">Are you sure you want to exit?</string>
+    <string name="dialog_hotel_settings_title">Hotel Settings</string>
+    <string name="dialog_hotel_settings_text">Please enter your hotel code to download settings.</string>
+    <string name="dialog_hotel_settings_hotel_code">Hotel Code</string>
+    <string name="dialog_contact_support_title">Contact Support</string>
+    <string name="dialog_contact_support_text">You have entered an invalid Hotel Code! \nPlease contact your administrator.</string>
+    <!-- Messages  -->
+    <string name="message_settings_updated">Settings successfully Updated</string>
+    <!-- Errors Messages  -->
+    <string name="error_message_field_required">This field is required!</string>
+    <string name="error_message_something_wrong">Something went wrong!</string>
+    <string name="error_message_server_down">Server is down please try after some time</string>
+    <string name="error_message_check_settings">Something went wrong. Check your Settings!</string>
+    <string name="error_message_hotel_not_active">Something went wrong.\nContact the administrator!</string>
+    <string name="error_message_app_not_active">You don\'t have permission to use this application!</string>
+    <string name="error_message_server_unreachable">The server is unreachable!</string>
+    <string name="error_message_no_internet">No Internet Connection!</string>
+    <string name="error_message_unreachable_server">The server is unreachable!</string>
+    <string name="error_message_empty_reservation">No Pax Found In This Reservation</string>
+    <!-- Menu Items  -->
+    <string name="menu_item_save">Save</string>
+    <string name="menu_item_sync">Sync</string>
+    <string name="menu_item_refresh">Refresh</string>
 </resources>

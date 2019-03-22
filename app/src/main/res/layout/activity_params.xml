@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activitys.ParamsActivity">
+
+    <!-- ToolBar -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/include_toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- Users List -->
+    <RelativeLayout
+        android:id="@+id/rl_users_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar"
+        android:layout_marginBottom="8dp">
+
+        <!-- Sittings Container -->
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:orientation="vertical">
+
+                <!-- Params Title -->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_users_parameters_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:text="@string/text_user_parameters"
+                    android:textColor="@color/colorSecondaryDark"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Param First Name -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_first_name_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_first_name"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_first_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Last Name -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_last_name_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_last_name"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_last_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Gender -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_gender_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_gender"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Birthday -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_birthday_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_birthday"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Family Situation -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_family_situation_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_family_situation"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_famili_situation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Phone -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_phone_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_phone"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param E-mail -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_email_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_email"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Address -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_address_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_address"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param country -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_country_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_country"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_country"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Postal Code -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_postal_code_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_postal_code"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_postal_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param city -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_city_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_city"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Profession -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_profession_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_profession"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_profession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Type Doc ID -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_type_doc_id_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_type_doc_id"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_type_doc_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Handicap -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_handicap_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_handicap"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_handicap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+                <!-- Param Smooker -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_param_smoker_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_view_smoker"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sw_param_smoker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:checked="true"
+                        android:text="@string/all_on"
+                        android:textColor="@color/colorPrimary" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

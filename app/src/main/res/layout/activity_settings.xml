@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activitys.SettingsActivity">
+
+    <!-- ToolBar -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <include layout="@layout/include_toolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/pb_settings"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appbar"
+        android:layout_alignParentStart="true"
+        android:indeterminate="true"
+        android:theme="@style/MyProgressBarStyle"
+        android:visibility="gone" />
+
+    <!-- Sittings Container -->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pb_settings">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Serveur Config -->
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_settings_server_config_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/text_serveur_config"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Auto Update on/off -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <!-- Title -->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_settings_auto_update_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/text_auto_update"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/sw_settings_auto_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:checked="true"
+                    android:text="@string/all_on"
+                    android:textColor="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <!-- SSL on/off (http/https) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <!-- SSL Title -->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_settings_SSL_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/text_SSL"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/sw_settings_ssl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:checked="false"
+                    android:text="@string/all_off"
+                    android:textColor="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+            <!-- Default API IP -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <!-- Title -->
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_settings_default_api_url_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/text_default_url"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/rGroup_settings_default_api_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:checkedButton="@id/rb_settings_default_local_url"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rb_settings_default_public_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:text="@string/hint_public_ip"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/rb_settings_default_local_url"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimaryDark"
+                        android:text="@string/hint_local_ip"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+            <!-- Public IP -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/il_settings_public_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toStartOf="@id/chb_settings_public_ip"
+                    app:hintTextAppearance="@style/MyHintTextStyle">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_settings_public_ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_public_ip"
+                        android:inputType="text"
+                        android:theme="@style/MyEditTextStyle" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/chb_settings_public_ip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:checked="true" />
+
+            </RelativeLayout>
+
+            <!-- Local IP -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/il_settings_Local_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toStartOf="@id/chb_settings_Local_ip"
+                    app:hintTextAppearance="@style/MyHintTextStyle">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_settings_local_ip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_local_ip"
+                        android:inputType="text"
+                        android:theme="@style/MyEditTextStyle" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/chb_settings_Local_ip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:checked="true" />
+
+            </RelativeLayout>
+
+            <!-- API Public URL -->
+            <RelativeLayout
+                android:id="@+id/rl_settings_api_public_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/il_settings_api_public_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toStartOf="@id/rl_settings_public_url_stat"
+                    app:hintTextAppearance="@style/MyHintTextStyle">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_settings_api_public_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/hint_api_public_url"
+                        android:inputType="text"
+                        android:theme="@style/MyEditTextStyle" />
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_settings_public_url_stat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/img_settings_public_url_stat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <!-- ProgressBar -->
+                    <ProgressBar
+                        android:id="@+id/pb_settings_public_url_stat"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!-- API Local URL -->
+            <RelativeLayout
+                android:id="@+id/rl_settings_api_local_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/il_settings_api_local_url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toStartOf="@id/rl_settings_local_url_stat"
+                    app:hintTextAppearance="@style/MyHintTextStyle">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_settings_api_local_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/hint_api_local_url"
+                        android:inputType="text"
+                        android:theme="@style/MyEditTextStyle" />
+                </android.support.design.widget.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_settings_local_url_stat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/img_settings_local_url_stat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                    <!-- ProgressBar -->
+                    <ProgressBar
+                        android:id="@+id/pb_settings_local_url_stat"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorAccent" />
+
+            <!-- Hotel code Title -->
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_settings_hotel_code_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/text_hotel_code"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Hotel code -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/il_settings_hotel_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:hintTextAppearance="@style/MyHintTextStyle">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/et_settings_hotel_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_code"
+                    android:inputType="text"
+                    android:theme="@style/MyEditTextStyle" />
+            </android.support.design.widget.TextInputLayout>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>
