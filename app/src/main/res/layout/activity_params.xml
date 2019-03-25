@@ -335,7 +335,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tv_param_postal_code_title"
@@ -366,7 +367,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tv_param_city_title"

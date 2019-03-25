@@ -434,7 +434,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 if (response.raw().code() == 200) {
                     GLOBAL_START_DATA = response.body();
-                    Intent i = new Intent(getApplicationContext(), EditInfosActivity.class);
+                    Intent i = new Intent(getApplicationContext(), EditPaxDetailsActivity.class);
                     startActivity(i);
                 } else {
                     showSnackbar(findViewById(android.R.id.content), response.message());

@@ -43,4 +43,11 @@
         <item name="colorAccent">@color/colorSecondaryDark</item>
     </style>
 
+    <!-- Base application dialog theme -->
+    <style name="AppThemeDialog" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

@@ -33,7 +33,7 @@
         <activity
             android:name=".activitys.ParamsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activitys.EditInfosActivity"></activity>
+        <activity android:name=".activitys.EditPaxDetailsActivity"></activity>
     </application>
 
 </manifest>
