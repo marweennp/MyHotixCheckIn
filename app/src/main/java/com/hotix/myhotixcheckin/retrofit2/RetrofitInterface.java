@@ -1,6 +1,7 @@
 package com.hotix.myhotixcheckin.retrofit2;
 
 import com.hotix.myhotixcheckin.models.HotelSettings;
+import com.hotix.myhotixcheckin.models.HotelSettingsNew;
 import com.hotix.myhotixcheckin.models.Pax;
 import com.hotix.myhotixcheckin.models.ResponseMsg;
 import com.hotix.myhotixcheckin.models.StartData;
@@ -14,6 +15,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.API_VERSION;
 
@@ -24,21 +26,27 @@ public interface RetrofitInterface {
      **/
 
     //Is Connected service call
-    @GET("/HNGAPI/" + API_VERSION + "/api/MyHotixguest/isconnected")
-    Call<ResponseBody> isConnectedQuery();
+    @GET
+    Call<ResponseBody> isConnectedQuery(@Url String URL);
 
     //Get Infos service call
     @GET("/hotixsupport/api/myhotix/GetInfos?")
     Call<HotelSettings> getInfosQuery(@Query("codehotel") String codehotel,
                                       @Query("applicationId") String applicationId);
 
+    //Get Infos service call
+    @GET("/HotixSupportNew/API/Myhotix/GetInfos?")
+    Call<HotelSettingsNew> getHotelInfosQuery(@Query("codehotel") String codehotel,
+                                              @Query("applicationId") String applicationId);
+
     //Get Pax Resa service call
-    @GET("/HNGAPI/" + API_VERSION + "/api/myhotixguest/GetPaxResa?")
-    Call<ArrayList<Pax>> getPaxResaQuery(@Query("resaId") String resaId);
+    @GET
+    Call<ArrayList<Pax>> getPaxResaQuery(@Url String URL,
+                                         @Query("resaId") String resaId);
 
     //Get All Data service call
-    @GET("/HNGAPI/" + API_VERSION + "/api/myhotixguest/getalldata")
-    Call<StartData> getAllDataQuery();
+    @GET
+    Call<StartData> getAllDataQuery(@Url String URL);
 
 /***
  ** POST ********************************************************************************************
@@ -47,8 +55,9 @@ public interface RetrofitInterface {
 
 //Post UpdateReservationInfos service call
 @FormUrlEncoded
-@POST("/HNGAPI/" + API_VERSION + "/api/myhotixguest/UpdateReservationInfos")
-Call<ResponseMsg> updateReservationInfosQuery(@Field("clientId") String clientId,
+@POST
+Call<ResponseMsg> updateReservationInfosQuery(@Url String URL,
+                                              @Field("clientId") String clientId,
                                               @Field("NomClient") String NomClient,
                                               @Field("PrenomClient") String PrenomClient,
                                               @Field("PaysId") String PaysId,

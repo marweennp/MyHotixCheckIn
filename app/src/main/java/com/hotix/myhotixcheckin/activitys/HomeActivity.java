@@ -21,6 +21,7 @@ import com.hotix.myhotixcheckin.R;
 import com.hotix.myhotixcheckin.helpers.InputValidation;
 import com.hotix.myhotixcheckin.helpers.MySettings;
 import com.hotix.myhotixcheckin.models.HotelSettings;
+import com.hotix.myhotixcheckin.models.HotelSettingsNew;
 import com.hotix.myhotixcheckin.models.Pax;
 import com.hotix.myhotixcheckin.models.StartData;
 import com.hotix.myhotixcheckin.retrofit2.RetrofitClient;
@@ -39,6 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.hotix.myhotixcheckin.helpers.ConnectionChecher.checkNetwork;
+import static com.hotix.myhotixcheckin.helpers.ConstantConfig.API_VERSION;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.BASE_URL;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.FINAL_APP_ID;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.GLOBAL_PAX_LIST;
@@ -136,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    //************************************************************************************************
+    /***************************************************************************************************/
 
     //This method is for EditText valus validation.
     private boolean inputTextValidation() {
@@ -290,12 +292,96 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    //*************************************(  Lode Hotel Infos  )****************************************
+    /*************************************(  Lode Hotel Infos  )****************************************/
+
+//    public void lodeHotelInfos(String code) {
+//
+//        RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
+//        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+//
+//        final ProgressDialog progressDialog = new ProgressDialog(HomeActivity.this);
+//        progressDialog.setIndeterminate(true);
+//        progressDialog.setMessage(getString(R.string.all_downloading));
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//
+//        userCall.enqueue(new Callback<HotelSettings>() {
+//            @Override
+//            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+//
+//                progressDialog.dismiss();
+//
+//                if (response.raw().code() == 200) {
+//                    HotelSettings hotelSettings = response.body();
+//                    //Check if hotel id > 0
+//                    if (!(hotelSettings.getId() > 0)) {
+//                        //Hotel do not exist
+//                        startContactSupportDialog();
+//                    } else {
+//
+//                        //Get Public IP
+//                        if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
+//                            mMySettings.setPublicIp(hotelSettings.getIPPublic());
+//                            mMySettings.setPublicBaseUrl("http://" + hotelSettings.getIPPublic() + "/");
+//                            mMySettings.setPublicIpEnabled(true);
+//                        } else {
+//                            mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
+//                            mMySettings.setPublicIpEnabled(false);
+//                        }
+//
+//                        //Get Local IP
+//                        if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
+//                            mMySettings.setLocalIp(hotelSettings.getIPLocal());
+//                            mMySettings.setLocalBaseUrl("http://" + hotelSettings.getIPLocal() + "/");
+//                            mMySettings.setLocalIpEnabled(true);
+//                        } else {
+//                            mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
+//                            mMySettings.setLocalIpEnabled(false);
+//                        }
+//
+//                        //Get Hotel ID
+//                        if (!stringEmptyOrNull(hotelSettings.getCode())) {
+//                            mMySettings.setHotelCode(hotelSettings.getCode());
+//                        } else {
+//                            mMySettings.setHotelCode("0000");
+//                        }
+//
+//                        //Get Hotel Name
+//                        if (!stringEmptyOrNull(hotelSettings.getName())) {
+//                            mMySettings.setHotelName(hotelSettings.getName());
+//                        } else {
+//                            mMySettings.setHotelName("MY HOTEL");
+//                        }
+//
+//                        mMySettings.setFirstStart(false);
+//                        mMySettings.setConfigured(true);
+//                        mMySettings.setSettingsUpdated(true);
+//
+//                        showSnackbar(findViewById(android.R.id.content), getString(R.string.message_settings_updated));
+//                        setBaseUrl(getApplicationContext());
+//                    }
+//
+//                } else {
+//                    startDownloadSettingsDialog();
+//                    showSnackbar(findViewById(android.R.id.content), response.message());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HotelSettings> call, Throwable t) {
+//                progressDialog.dismiss();
+//                startDownloadSettingsDialog();
+//                showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_server_down));
+//            }
+//        });
+//
+//    }
 
     public void lodeHotelInfos(String code) {
 
         RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
-        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+        Call<HotelSettingsNew> userCall = service.getHotelInfosQuery(code, FINAL_APP_ID);
 
         final ProgressDialog progressDialog = new ProgressDialog(HomeActivity.this);
         progressDialog.setIndeterminate(true);
@@ -303,52 +389,61 @@ public class HomeActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        userCall.enqueue(new Callback<HotelSettings>() {
+        userCall.enqueue(new Callback<HotelSettingsNew>() {
             @Override
-            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+            public void onResponse(Call<HotelSettingsNew> call, Response<HotelSettingsNew> response) {
 
                 progressDialog.dismiss();
 
                 if (response.raw().code() == 200) {
-                    HotelSettings hotelSettings = response.body();
+                    HotelSettingsNew hotelSettings = response.body();
                     //Check if hotel id > 0
-                    if (!(hotelSettings.getId() > 0)) {
+                    if (!(hotelSettings.getHotelID() > 0)) {
                         //Hotel do not exist
                         startContactSupportDialog();
                     } else {
 
                         //Get Public IP
-                        if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
-                            mMySettings.setPublicIp(hotelSettings.getIPPublic());
-                            mMySettings.setPublicBaseUrl("http://" + hotelSettings.getIPPublic() + "/");
+                        if (!stringEmptyOrNull(hotelSettings.getHotelIPPublic())) {
+                            mMySettings.setPublicIp(hotelSettings.getHotelIPPublic());
+                            mMySettings.setPublicBaseUrl("http://" + hotelSettings.getHotelIPPublic() + "/");
                             mMySettings.setPublicIpEnabled(true);
                         } else {
                             mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
+                            mMySettings.setPublicBaseUrl("http://xxx.xxx.xxx.xxx/");
                             mMySettings.setPublicIpEnabled(false);
                         }
 
                         //Get Local IP
-                        if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
-                            mMySettings.setLocalIp(hotelSettings.getIPLocal());
-                            mMySettings.setLocalBaseUrl("http://" + hotelSettings.getIPLocal() + "/");
+                        if (!stringEmptyOrNull(hotelSettings.getHotelIPLocal())) {
+                            mMySettings.setLocalIp(hotelSettings.getHotelIPLocal());
+                            mMySettings.setLocalBaseUrl("http://" + hotelSettings.getHotelIPLocal() + "/");
                             mMySettings.setLocalIpEnabled(true);
                         } else {
                             mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
+                            mMySettings.setLocalBaseUrl("http://xxx.xxx.xxx.xxx/");
                             mMySettings.setLocalIpEnabled(false);
                         }
 
                         //Get Hotel ID
-                        if (!stringEmptyOrNull(hotelSettings.getCode())) {
-                            mMySettings.setHotelCode(hotelSettings.getCode());
+                        if (!stringEmptyOrNull(hotelSettings.getHotelCode())) {
+                            mMySettings.setHotelCode(hotelSettings.getHotelCode());
                         } else {
                             mMySettings.setHotelCode("0000");
                         }
 
                         //Get Hotel Name
-                        if (!stringEmptyOrNull(hotelSettings.getName())) {
-                            mMySettings.setHotelName(hotelSettings.getName());
+                        if (!stringEmptyOrNull(hotelSettings.getHotelName())) {
+                            mMySettings.setHotelName(hotelSettings.getHotelName());
                         } else {
                             mMySettings.setHotelName("MY HOTEL");
+                        }
+
+                        //Get API Version
+                        if (!stringEmptyOrNull(hotelSettings.getAPIVersion())) {
+                            mMySettings.setApiVersion(hotelSettings.getAPIVersion());
+                        } else {
+                            mMySettings.setApiVersion("v0");
                         }
 
                         mMySettings.setFirstStart(false);
@@ -367,7 +462,7 @@ public class HomeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<HotelSettings> call, Throwable t) {
+            public void onFailure(Call<HotelSettingsNew> call, Throwable t) {
                 progressDialog.dismiss();
                 startDownloadSettingsDialog();
                 showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_server_down));
@@ -381,9 +476,10 @@ public class HomeActivity extends AppCompatActivity {
 
         pbSearch.setVisibility(View.VISIBLE);
         String resaId = etResaNum.getText().toString();
+        String URL = "/HNGAPI/" + API_VERSION + "/api/myhotixguest/GetPaxResa?";
 
         RetrofitInterface service = RetrofitClient.getClientHngApi().create(RetrofitInterface.class);
-        Call<ArrayList<Pax>> userCall = service.getPaxResaQuery(resaId);
+        Call<ArrayList<Pax>> userCall = service.getPaxResaQuery(URL, resaId);
         userCall.enqueue(new Callback<ArrayList<Pax>>() {
             @Override
             public void onResponse(Call<ArrayList<Pax>> call, Response<ArrayList<Pax>> response) {
@@ -421,8 +517,10 @@ public class HomeActivity extends AppCompatActivity {
     //**********************************(  Loading Start Data  )*************************************
     public void loadingStartData() {
 
+        String URL = "/HNGAPI/" + API_VERSION + "/api/myhotixguest/getalldata";
+
         RetrofitInterface service = RetrofitClient.getClientHngApi().create(RetrofitInterface.class);
-        Call<StartData> userCall = service.getAllDataQuery();
+        Call<StartData> userCall = service.getAllDataQuery(URL);
 
         pbSearch.setVisibility(View.VISIBLE);
 

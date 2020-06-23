@@ -36,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.hotix.myhotixcheckin.helpers.ConstantConfig.API_VERSION;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.GLOBAL_PAX_LIST;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.GLOBAL_START_DATA;
 import static com.hotix.myhotixcheckin.helpers.Utils.dateFormater;
@@ -325,9 +326,11 @@ public class PaxDetailsFragment extends Fragment {
     }
 
     private void updatePax() {
+
+        String URL = "/HNGAPI/" + API_VERSION + "/api/myhotixguest/UpdateReservationInfos";
         checkPaxData();
         RetrofitInterface service = RetrofitClient.getClientHngApi().create(RetrofitInterface.class);
-        Call<ResponseMsg> userCall = service.updateReservationInfosQuery(
+        Call<ResponseMsg> userCall = service.updateReservationInfosQuery(URL,
                 paxData.getId().toString(),
                 paxData.getNom(),
                 paxData.getPrenom(),

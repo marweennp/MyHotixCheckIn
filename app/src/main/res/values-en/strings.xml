@@ -24,6 +24,7 @@
     <string name="hint_local_ip">Local IP</string>
     <string name="hint_api_public_url">API Public URL</string>
     <string name="hint_api_local_url">API Local URL</string>
+    <string name="hint_api_version">API Version</string>
     <string name="text_hotel_code">Hotel Code</string>
     <string name="hint_code">Code</string>
     <string name="text_picture">Picture</string>

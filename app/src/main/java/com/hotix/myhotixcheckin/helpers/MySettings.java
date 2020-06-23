@@ -25,6 +25,7 @@ public class MySettings {
     public static final String KEY_LOCAL_BASE_URL = "localBaseUrl";
     public static final String KEY_HOTEL_CODE = "hotelCode";
     public static final String KEY_HOTEL_NAME = "hotelName";
+    public static final String KEY_API_VERSION = "apiVersion";
 
     //Integer
     //
@@ -192,6 +193,15 @@ public class MySettings {
 
     public void setHotelName(String hotelName) {
         editor.putString(KEY_HOTEL_NAME, hotelName);
+        editor.commit();
+    }
+
+    public String getApiVersion() {
+        return pref.getString(KEY_API_VERSION, "v0");
+    }
+
+    public void setApiVersion(String apiVersion) {
+        editor.putString(KEY_API_VERSION, apiVersion);
         editor.commit();
     }
 

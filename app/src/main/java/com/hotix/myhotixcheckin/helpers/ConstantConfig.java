@@ -15,12 +15,12 @@ public class ConstantConfig {
     //FINAL App Id
     public static final String FINAL_APP_ID = "3";
 
-    // HNGAPI version
-    public static final String API_VERSION = "v0";
-
     /***************************************(Non Final )*******************************************/
     //BASE URL
     public static String BASE_URL = "";
+
+    // HNGAPI version
+    public static String API_VERSION = "v0";
 
     //Pax List Global
     public static ArrayList<Pax> GLOBAL_PAX_LIST = new ArrayList<>();

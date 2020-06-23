@@ -21,6 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.hotix.myhotixcheckin.helpers.ConstantConfig.API_VERSION;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.BASE_URL;
 
 public class Utils {
@@ -68,13 +69,16 @@ public class Utils {
             //mySettings.setPublicIpEnabled(mySettings.getLocalIpEnabled() ? true : false);
         }
 
+        API_VERSION = mySettings.getApiVersion();
+
     }
 
     public static void ping(Context context) {
         final MySettings mMySettings = new MySettings(context);
+        String URL = "/HNGAPI/" + API_VERSION + "/api/MyHotixguest/isconnected";
 
         RetrofitInterface service = RetrofitClient.getClientPing().create(RetrofitInterface.class);
-        Call<ResponseBody> userCall = service.isConnectedQuery();
+        Call<ResponseBody> userCall = service.isConnectedQuery(URL);
         userCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

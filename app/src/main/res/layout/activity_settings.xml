@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -343,6 +344,33 @@
                         android:layout_centerInParent="true" />
 
                 </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!-- API Vertion -->
+            <RelativeLayout
+                android:id="@+id/rl_settings_api_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/il_settings_api_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:hintTextAppearance="@style/MyHintTextStyle">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/et_settings_api_vertion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_api_version"
+                        android:inputType="text"
+                        android:theme="@style/MyEditTextStyle" />
+                </android.support.design.widget.TextInputLayout>
 
             </RelativeLayout>
 

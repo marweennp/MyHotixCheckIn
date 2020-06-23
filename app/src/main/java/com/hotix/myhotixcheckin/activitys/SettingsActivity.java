@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import com.hotix.myhotixcheckin.R;
 import com.hotix.myhotixcheckin.helpers.MySettings;
 import com.hotix.myhotixcheckin.models.HotelSettings;
+import com.hotix.myhotixcheckin.models.HotelSettingsNew;
 import com.hotix.myhotixcheckin.retrofit2.RetrofitClient;
 import com.hotix.myhotixcheckin.retrofit2.RetrofitInterface;
 
@@ -32,6 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.hotix.myhotixcheckin.helpers.ConstantConfig.API_VERSION;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.BASE_URL;
 import static com.hotix.myhotixcheckin.helpers.ConstantConfig.FINAL_APP_ID;
 import static com.hotix.myhotixcheckin.helpers.Utils.setBaseUrl;
@@ -54,6 +56,8 @@ public class SettingsActivity extends AppCompatActivity {
     TextInputLayout ilApiPublicUrl;
     @BindView(R.id.il_settings_api_local_url)
     TextInputLayout ilApiLocalUrl;
+    @BindView(R.id.il_settings_api_version)
+    TextInputLayout ilApiVersion;
     @BindView(R.id.et_settings_public_ip)
     AppCompatEditText etPublicIp;
     @BindView(R.id.et_settings_local_ip)
@@ -62,10 +66,14 @@ public class SettingsActivity extends AppCompatActivity {
     AppCompatEditText etApiPublicUrl;
     @BindView(R.id.et_settings_api_local_url)
     AppCompatEditText etApiLocalUrl;
+    @BindView(R.id.et_settings_api_vertion)
+    AppCompatEditText etApiVersion;
     @BindView(R.id.rl_settings_api_public_url)
     RelativeLayout rlApiPublicUrl;
     @BindView(R.id.rl_settings_api_local_url)
     RelativeLayout rlApiLocalUrl;
+    @BindView(R.id.rl_settings_api_version)
+    RelativeLayout rlApiVersion;
     @BindView(R.id.img_settings_public_url_stat)
     AppCompatImageView imgApiPublicUrl;
     @BindView(R.id.img_settings_local_url_stat)
@@ -281,6 +289,29 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //Local IP
+        etApiVersion.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                if (!stringEmptyOrNull(etApiVersion.getText().toString().trim())) {
+                    mMySettings.setApiVersion(etApiVersion.getText().toString().trim());
+                } else {
+                    mMySettings.setApiVersion("v0");
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+            }
+        });
+
         //Public IP Eanbled
         chbPublicIp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -333,6 +364,7 @@ public class SettingsActivity extends AppCompatActivity {
         etLocalIp.setText(mMySettings.getLocalIp().trim());
         etApiPublicUrl.setText(mMySettings.getPublicBaseUrl().trim());
         etApiLocalUrl.setText(mMySettings.getLocalBaseUrl().trim());
+        etApiVersion.setText(mMySettings.getApiVersion().trim());
         etHotelCode.setText(mMySettings.getHotelCode().trim());
 
     }
@@ -367,6 +399,12 @@ public class SettingsActivity extends AppCompatActivity {
             mMySettings.setLocalBaseUrl("http://xxx.xxx.xxx.xxx/");
         }
 
+        if (!stringEmptyOrNull(etApiVersion.getText().toString().trim())) {
+            mMySettings.setApiVersion(etApiVersion.getText().toString().trim());
+        } else {
+            mMySettings.setApiVersion("v0");
+        }
+
         mMySettings.setPublicIpEnabled(chbPublicIp.isChecked());
         mMySettings.setLocalIpEnabled(chbLocalIp.isChecked());
 
@@ -386,66 +424,158 @@ public class SettingsActivity extends AppCompatActivity {
 
     /**********************************************************************************************/
 
+//    public void lodeHotelInfos() {
+//
+//        String code = etHotelCode.getText().toString();
+//        RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
+//        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+//
+//        pbSettings.setVisibility(View.VISIBLE);
+//
+//        userCall.enqueue(new Callback<HotelSettings>() {
+//            @Override
+//            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+//
+//                pbSettings.setVisibility(View.GONE);
+//
+//                if (response.raw().code() == 200) {
+//                    HotelSettings hotelSettings = response.body();
+//
+//                    //Check if the hotel is active or not
+//                    if (!hotelSettings.getIsActive()) {
+//                        //Hotel not avtivz
+//                        showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_hotel_not_active));
+//                    } else {
+//                        //Hotel active
+//                        //Check if the hotel can use the app
+//                        if (!hotelSettings.getAppIsActive()) {
+//                            //Hotel can't use app
+//                            showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_app_not_active));
+//                        } else {
+//                            //Hotel can use app
+//
+//                            //Get Public IP
+//                            if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
+//                                mMySettings.setPublicIp(hotelSettings.getIPPublic());
+//                                mMySettings.setPublicIpEnabled(true);
+//                            } else {
+//                                mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
+//                                mMySettings.setPublicIpEnabled(false);
+//                            }
+//
+//                            //Get Local IP
+//                            if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
+//                                mMySettings.setLocalIp(hotelSettings.getIPLocal());
+//                                mMySettings.setLocalIpEnabled(true);
+//                            } else {
+//                                mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
+//                                mMySettings.setLocalIpEnabled(false);
+//                            }
+//
+//                            //Get Hotel ID
+//                            if (!stringEmptyOrNull(hotelSettings.getCode())) {
+//                                mMySettings.setHotelCode(hotelSettings.getCode());
+//                            } else {
+//                                mMySettings.setHotelCode("0000");
+//                            }
+//
+//                            //Get Hotel Name
+//                            if (!stringEmptyOrNull(hotelSettings.getName())) {
+//                                mMySettings.setHotelName(hotelSettings.getName());
+//                            } else {
+//                                mMySettings.setHotelName("MY HOTEL");
+//                            }
+//                        }
+//                    }
+//                    mMySettings.setSettingsUpdated(true);
+//                    loadSettings();
+//
+//                } else {
+//                    showSnackbar(findViewById(android.R.id.content), response.message());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HotelSettings> call, Throwable t) {
+//                pbSettings.setVisibility(View.GONE);
+//                showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_server_down));
+//            }
+//        });
+//
+//    }
+
     public void lodeHotelInfos() {
 
         String code = etHotelCode.getText().toString();
         RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
-        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+        Call<HotelSettingsNew> userCall = service.getHotelInfosQuery(code, FINAL_APP_ID);
 
         pbSettings.setVisibility(View.VISIBLE);
 
-        userCall.enqueue(new Callback<HotelSettings>() {
+        userCall.enqueue(new Callback<HotelSettingsNew>() {
             @Override
-            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+            public void onResponse(Call<HotelSettingsNew> call, Response<HotelSettingsNew> response) {
 
                 pbSettings.setVisibility(View.GONE);
 
                 if (response.raw().code() == 200) {
-                    HotelSettings hotelSettings = response.body();
+                    HotelSettingsNew hotelSettings = response.body();
 
                     //Check if the hotel is active or not
-                    if (!hotelSettings.getIsActive()) {
+                    if (!hotelSettings.getHotelIsActive()) {
                         //Hotel not avtivz
                         showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_hotel_not_active));
                     } else {
                         //Hotel active
                         //Check if the hotel can use the app
-                        if (!hotelSettings.getAppIsActive()) {
+                        if (!hotelSettings.getApplicationIsActive()) {
                             //Hotel can't use app
                             showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_app_not_active));
                         } else {
                             //Hotel can use app
 
                             //Get Public IP
-                            if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
-                                mMySettings.setPublicIp(hotelSettings.getIPPublic());
+                            if (!stringEmptyOrNull(hotelSettings.getHotelIPPublic())) {
+                                mMySettings.setPublicIp(hotelSettings.getHotelIPPublic());
+                                mMySettings.setPublicBaseUrl("http://" + hotelSettings.getHotelIPPublic() + "/");
                                 mMySettings.setPublicIpEnabled(true);
                             } else {
                                 mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
+                                mMySettings.setPublicBaseUrl("http://xxx.xxx.xxx.xxx/");
                                 mMySettings.setPublicIpEnabled(false);
                             }
 
                             //Get Local IP
-                            if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
-                                mMySettings.setLocalIp(hotelSettings.getIPLocal());
+                            if (!stringEmptyOrNull(hotelSettings.getHotelIPLocal())) {
+                                mMySettings.setLocalIp(hotelSettings.getHotelIPLocal());
+                                mMySettings.setLocalBaseUrl("http://" + hotelSettings.getHotelIPLocal() + "/");
                                 mMySettings.setLocalIpEnabled(true);
                             } else {
                                 mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
+                                mMySettings.setLocalBaseUrl("http://xxx.xxx.xxx.xxx/");
                                 mMySettings.setLocalIpEnabled(false);
                             }
 
                             //Get Hotel ID
-                            if (!stringEmptyOrNull(hotelSettings.getCode())) {
-                                mMySettings.setHotelCode(hotelSettings.getCode());
+                            if (!stringEmptyOrNull(hotelSettings.getHotelCode())) {
+                                mMySettings.setHotelCode(hotelSettings.getHotelCode());
                             } else {
                                 mMySettings.setHotelCode("0000");
                             }
 
                             //Get Hotel Name
-                            if (!stringEmptyOrNull(hotelSettings.getName())) {
-                                mMySettings.setHotelName(hotelSettings.getName());
+                            if (!stringEmptyOrNull(hotelSettings.getHotelName())) {
+                                mMySettings.setHotelName(hotelSettings.getHotelName());
                             } else {
                                 mMySettings.setHotelName("MY HOTEL");
+                            }
+
+                            //Get API Version
+                            if (!stringEmptyOrNull(hotelSettings.getAPIVersion())) {
+                                mMySettings.setApiVersion(hotelSettings.getAPIVersion());
+                            } else {
+                                mMySettings.setApiVersion("v0");
                             }
                         }
                     }
@@ -459,7 +589,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<HotelSettings> call, Throwable t) {
+            public void onFailure(Call<HotelSettingsNew> call, Throwable t) {
                 pbSettings.setVisibility(View.GONE);
                 showSnackbar(findViewById(android.R.id.content), getString(R.string.error_message_server_down));
             }
@@ -469,8 +599,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void ping(final AppCompatImageView img, final ProgressBar pb, final boolean local) {
 
+        String URL = "/HNGAPI/" + API_VERSION + "/api/MyHotixguest/isconnected";
+
         RetrofitInterface service = RetrofitClient.getClientPing().create(RetrofitInterface.class);
-        Call<ResponseBody> userCall = service.isConnectedQuery();
+        Call<ResponseBody> userCall = service.isConnectedQuery(URL);
 
         img.setVisibility(View.GONE);
         pb.setVisibility(View.VISIBLE);

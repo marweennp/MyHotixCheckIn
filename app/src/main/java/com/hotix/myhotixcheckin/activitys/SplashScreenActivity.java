@@ -10,6 +10,7 @@ import android.support.v7.widget.AppCompatTextView;
 import com.hotix.myhotixcheckin.R;
 import com.hotix.myhotixcheckin.helpers.MySettings;
 import com.hotix.myhotixcheckin.models.HotelSettings;
+import com.hotix.myhotixcheckin.models.HotelSettingsNew;
 import com.hotix.myhotixcheckin.retrofit2.RetrofitClient;
 import com.hotix.myhotixcheckin.retrofit2.RetrofitInterface;
 
@@ -82,22 +83,87 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     /**********************************************************************************************/
 
+//    public void UpdateHotelInfos(String code) {
+//
+//        RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
+//        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+//
+//        userCall.enqueue(new Callback<HotelSettings>() {
+//            @Override
+//            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+//
+//                if (response.raw().code() == 200) {
+//                    HotelSettings hotelSettings = response.body();
+//
+//                    //Get Public IP
+//                    if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
+//                        mMySettings.setPublicIp(hotelSettings.getIPPublic());
+//                        mMySettings.setPublicBaseUrl("http://" + hotelSettings.getIPPublic() + "/");
+//                        mMySettings.setPublicIpEnabled(true);
+//                    } else {
+//                        mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
+//                        mMySettings.setPublicBaseUrl("http://xxx.xxx.xxx.xxx/");
+//                        mMySettings.setPublicIpEnabled(false);
+//                    }
+//
+//                    //Get Local IP
+//                    if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
+//                        mMySettings.setLocalIp(hotelSettings.getIPLocal());
+//                        mMySettings.setLocalBaseUrl("http://" + hotelSettings.getIPLocal() + "/");
+//                        mMySettings.setLocalIpEnabled(true);
+//                    } else {
+//                        mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
+//                        mMySettings.setLocalBaseUrl("http://xxx.xxx.xxx.xxx/");
+//                        mMySettings.setLocalIpEnabled(false);
+//                    }
+//
+//                    //Get Hotel ID
+//                    if (!stringEmptyOrNull(hotelSettings.getCode())) {
+//                        mMySettings.setHotelCode(hotelSettings.getCode());
+//                    } else {
+//                        mMySettings.setHotelCode("0000");
+//                    }
+//
+//                    //Get Hotel Name
+//                    if (!stringEmptyOrNull(hotelSettings.getName())) {
+//                        mMySettings.setHotelName(hotelSettings.getName());
+//                    } else {
+//                        mMySettings.setHotelName("MY HOTEL");
+//                    }
+//
+//                    mMySettings.setSettingsUpdated(true);
+//
+//                } else {
+//                    mMySettings.setSettingsUpdated(false);
+//                }
+//                startDelay();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HotelSettings> call, Throwable t) {
+//                mMySettings.setSettingsUpdated(false);
+//                startDelay();
+//            }
+//        });
+//
+//    }
+
     public void UpdateHotelInfos(String code) {
 
         RetrofitInterface service = RetrofitClient.getHotixSupportApi().create(RetrofitInterface.class);
-        Call<HotelSettings> userCall = service.getInfosQuery(code, FINAL_APP_ID);
+        Call<HotelSettingsNew> userCall = service.getHotelInfosQuery(code, FINAL_APP_ID);
 
-        userCall.enqueue(new Callback<HotelSettings>() {
+        userCall.enqueue(new Callback<HotelSettingsNew>() {
             @Override
-            public void onResponse(Call<HotelSettings> call, Response<HotelSettings> response) {
+            public void onResponse(Call<HotelSettingsNew> call, Response<HotelSettingsNew> response) {
 
                 if (response.raw().code() == 200) {
-                    HotelSettings hotelSettings = response.body();
+                    HotelSettingsNew hotelSettings = response.body();
 
                     //Get Public IP
-                    if (!stringEmptyOrNull(hotelSettings.getIPPublic())) {
-                        mMySettings.setPublicIp(hotelSettings.getIPPublic());
-                        mMySettings.setPublicBaseUrl("http://" + hotelSettings.getIPPublic() + "/");
+                    if (!stringEmptyOrNull(hotelSettings.getHotelIPPublic())) {
+                        mMySettings.setPublicIp(hotelSettings.getHotelIPPublic());
+                        mMySettings.setPublicBaseUrl("http://" + hotelSettings.getHotelIPPublic() + "/");
                         mMySettings.setPublicIpEnabled(true);
                     } else {
                         mMySettings.setPublicIp("xxx.xxx.xxx.xxx");
@@ -106,9 +172,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                     }
 
                     //Get Local IP
-                    if (!stringEmptyOrNull(hotelSettings.getIPLocal())) {
-                        mMySettings.setLocalIp(hotelSettings.getIPLocal());
-                        mMySettings.setLocalBaseUrl("http://" + hotelSettings.getIPLocal() + "/");
+                    if (!stringEmptyOrNull(hotelSettings.getHotelIPLocal())) {
+                        mMySettings.setLocalIp(hotelSettings.getHotelIPLocal());
+                        mMySettings.setLocalBaseUrl("http://" + hotelSettings.getHotelIPLocal() + "/");
                         mMySettings.setLocalIpEnabled(true);
                     } else {
                         mMySettings.setLocalIp("xxx.xxx.xxx.xxx");
@@ -117,17 +183,24 @@ public class SplashScreenActivity extends AppCompatActivity {
                     }
 
                     //Get Hotel ID
-                    if (!stringEmptyOrNull(hotelSettings.getCode())) {
-                        mMySettings.setHotelCode(hotelSettings.getCode());
+                    if (!stringEmptyOrNull(hotelSettings.getHotelCode())) {
+                        mMySettings.setHotelCode(hotelSettings.getHotelCode());
                     } else {
                         mMySettings.setHotelCode("0000");
                     }
 
                     //Get Hotel Name
-                    if (!stringEmptyOrNull(hotelSettings.getName())) {
-                        mMySettings.setHotelName(hotelSettings.getName());
+                    if (!stringEmptyOrNull(hotelSettings.getHotelName())) {
+                        mMySettings.setHotelName(hotelSettings.getHotelName());
                     } else {
                         mMySettings.setHotelName("MY HOTEL");
+                    }
+
+                    //Get API Version
+                    if (!stringEmptyOrNull(hotelSettings.getAPIVersion())) {
+                        mMySettings.setApiVersion(hotelSettings.getAPIVersion());
+                    } else {
+                        mMySettings.setApiVersion("v0");
                     }
 
                     mMySettings.setSettingsUpdated(true);
@@ -139,7 +212,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<HotelSettings> call, Throwable t) {
+            public void onFailure(Call<HotelSettingsNew> call, Throwable t) {
                 mMySettings.setSettingsUpdated(false);
                 startDelay();
             }
